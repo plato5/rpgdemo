@@ -1,7 +1,11 @@
 extends Node
 
-onready var _start_menu_image: TextureRect
+onready var _start_menu_view: TextureRect
 onready var _start_image: ImageTexture
+onready var _menu_items: VBoxContainer
+onready var _start_btn: Button
+onready var _load_btn: Button
+onready var _exit_btn: Button
 onready var _window_x: int
 onready var _window_y: int
 
@@ -11,25 +15,86 @@ func _ready():
 	
 
 func _initialize():
-	_window_x = get_viewport().size.x
-	_window_y = get_viewport().size.y
+	_set_size_from_window()
+	_set_start_menu_view()	
+	_set_menu_items()
 	
-	_start_menu_image = get_node("start_menu_image")
-	_start_menu_image.rect_size = Vector2(_window_x, _window_y)
 	
-	_start_menu_image.texture = _start_menu_image_to_scale(_window_x, _window_y)
-	add_child(_start_menu_image)
+	
+func _set_menu_items() -> void:
+	_menu_items = get_node("start_menu_view/menu_items")
+	_menu_items.rect_size = Vector2(_window_x * 0.30, _window_y * 0.30)
+		
+	# position menu items container
+	# todo: move this to a common lib
+	_menu_items.rect_position.x = (_window_x * 0.30) / 2
+	_menu_items.rect_position.y = (_window_y * 1.10) / 2
+	
+	_start_btn = get_node("start_menu_view/menu_items/start_btn")
+	_load_btn = get_node("start_menu_view/menu_items/load_btn")
+	_exit_btn = get_node("start_menu_view/menu_items/exit_btn")
+	
+	_set_buttons(_start_btn, "start")
+	_set_buttons(_load_btn, "load")
+	_set_buttons(_exit_btn, "exit")	
+	
+	
+	
+func _set_buttons(btn: Button, type: String) -> void:
+	if (type == "start"):
+		_start_btn.text = "Start Game"		
+		_start_btn.rect_min_size = Vector2(50, 50)
+		_start_btn.connect("pressed", self, "_start_pressed")
+	elif (type == "load"):
+		_load_btn.text = "Load Game"		
+		_load_btn.rect_min_size = Vector2(50, 50)
+		_load_btn.connect("pressed", self, "_load_pressed")
+	elif(type == "exit"):
+		_exit_btn.text = "Exit Game"		
+		_exit_btn.rect_min_size = Vector2(50, 50)
+		_exit_btn.connect("pressed", self, "_exit_pressed")
+	
+	
+	
+func _start_pressed() -> void:
+	print("Starting Game...")
+	
 	
 
-func _start_menu_image_to_scale(x: int, y: int) -> ImageTexture:
-	var menu_image: ImageTexture = ImageTexture.new()	
-	var texture = load("res://assets/images/backgrounds/start_menu.jpg")
+func _load_pressed() -> void:
+	print("Loading Game...")
 	
+	
+
+func _exit_pressed() -> void:
+	print("Exiting Game...")
+	
+	
+	
+func _set_size_from_window() -> void:
+	_window_x = get_viewport().size.x
+	_window_y = get_viewport().size.y	
+	
+		
+		
+func _set_start_menu_view() -> void:
+	_start_menu_view = get_node("start_menu_view")
+	_start_menu_view.rect_size = Vector2(_window_x, _window_y)	
+	_start_menu_view.texture = _set_image_to_scale(_window_x, _window_y)				
+	
+	
+	
+func _set_image_to_scale(x: int, y: int) -> ImageTexture:
+	var menu_image: ImageTexture = ImageTexture.new()	
+	var texture = load("res://assets/images/backgrounds/start_menu.jpg")	
 	var image = texture.get_data()
+	
 	image.resize(x, y, 1)	
 	menu_image.create_from_image(image)
 	
 	return menu_image
+	
+	
 	
 	
 	

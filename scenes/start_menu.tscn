@@ -10,9 +10,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="start_menu_image" type="TextureRect" parent="."]
+[node name="start_menu_view" type="TextureRect" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="menu_items" type="VBoxContainer" parent="start_menu_view"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="start_btn" type="Button" parent="start_menu_view/menu_items"]
+margin_right = 40.0
+margin_bottom = 20.0
+
+[node name="load_btn" type="Button" parent="start_menu_view/menu_items"]
+margin_top = 24.0
+margin_right = 40.0
+margin_bottom = 44.0
+
+[node name="exit_btn" type="Button" parent="start_menu_view/menu_items"]
+margin_top = 48.0
+margin_right = 40.0
+margin_bottom = 68.0
