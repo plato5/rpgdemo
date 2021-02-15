@@ -6,10 +6,11 @@ onready var _menu_items: VBoxContainer
 onready var _start_btn: Button
 onready var _load_btn: Button
 onready var _exit_btn: Button
+onready var _start_lbl: Label
 onready var _window_x: int
 onready var _window_y: int
 
-
+# todo: might want to pull down some of this set up to child scripts
 func _ready():
 	_initialize()
 	
@@ -28,11 +29,16 @@ func _set_menu_items() -> void:
 	# position menu items container
 	# todo: move this to a common lib
 	_menu_items.rect_position.x = (_window_x * 0.30) / 2
-	_menu_items.rect_position.y = (_window_y * 1.10) / 2
+	_menu_items.rect_position.y = (_window_y * 0.70) / 2
 	
+	_start_lbl = get_node("start_menu_view/menu_items/start_lbl")
 	_start_btn = get_node("start_menu_view/menu_items/start_btn")
 	_load_btn = get_node("start_menu_view/menu_items/load_btn")
 	_exit_btn = get_node("start_menu_view/menu_items/exit_btn")
+	
+	# todo: might want to put the label in a seperate container
+	_start_lbl.rect_min_size = Vector2(100, 100)
+	_start_lbl.text = "RPG DEMO"
 	
 	_set_buttons(_start_btn, "start")
 	_set_buttons(_load_btn, "load")
@@ -40,17 +46,18 @@ func _set_menu_items() -> void:
 	
 	
 	
+# todo: hard coded Vector's need to be scaled
 func _set_buttons(btn: Button, type: String) -> void:
 	if (type == "start"):
-		_start_btn.text = "Start Game"		
+		_start_btn.text = "START GAME"		
 		_start_btn.rect_min_size = Vector2(50, 50)
 		_start_btn.connect("pressed", self, "_start_pressed")
 	elif (type == "load"):
-		_load_btn.text = "Load Game"		
+		_load_btn.text = "LOAD GAME"		
 		_load_btn.rect_min_size = Vector2(50, 50)
 		_load_btn.connect("pressed", self, "_load_pressed")
 	elif(type == "exit"):
-		_exit_btn.text = "Exit Game"		
+		_exit_btn.text = "EXIT GAME"		
 		_exit_btn.rect_min_size = Vector2(50, 50)
 		_exit_btn.connect("pressed", self, "_exit_pressed")
 	
