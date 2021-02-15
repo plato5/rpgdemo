@@ -11,6 +11,9 @@ onready var _window_size: Vector2
 
 const math = preload("res://src/utils/math.gd")
 
+signal _start_game()
+signal _load_game()
+signal _exit_game()
 
 
 # todo: might want to pull down some of this set up to child scripts
@@ -27,17 +30,17 @@ func _initialize():
 	
 	
 func _start_pressed() -> void:
-	print("Starting Game...")
+	emit_signal("_start_game")
 	
 	
 
 func _load_pressed() -> void:
-	print("Loading Game...")
+	emit_signal("_load_game")
 	
 	
 
 func _exit_pressed() -> void:
-	print("Exiting Game...")
+	emit_signal("_exit_game")
 	
 	
 			
