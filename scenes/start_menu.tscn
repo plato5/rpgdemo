@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/scenes/start_menu.gd" type="Script" id=1]
+[ext_resource path="res://assets/custom_fonts/OpenSans-ExtraBold.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 2 )
 
 [node name="start_menu" type="Control"]
 anchor_right = 1.0
@@ -10,9 +15,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="start_menu_image" type="TextureRect" parent="."]
+[node name="start_menu_view" type="TextureRect" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="menu_items" type="VBoxContainer" parent="start_menu_view"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="start_lbl" type="Label" parent="start_menu_view/menu_items"]
+margin_right = 40.0
+margin_bottom = 2.0
+custom_fonts/font = SubResource( 1 )
+
+[node name="start_btn" type="Button" parent="start_menu_view/menu_items"]
+margin_top = 6.0
+margin_right = 40.0
+margin_bottom = 26.0
+
+[node name="load_btn" type="Button" parent="start_menu_view/menu_items"]
+margin_top = 30.0
+margin_right = 40.0
+margin_bottom = 50.0
+
+[node name="exit_btn" type="Button" parent="start_menu_view/menu_items"]
+margin_top = 54.0
+margin_right = 40.0
+margin_bottom = 74.0
