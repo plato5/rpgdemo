@@ -10,10 +10,13 @@ onready var _start_lbl: Label
 onready var _window_x: int
 onready var _window_y: int
 
+
+
 # todo: might want to pull down some of this set up to child scripts
 func _ready():
 	_initialize()
 	
+
 
 func _initialize():
 	_set_size_from_window()
