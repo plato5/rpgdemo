@@ -7,8 +7,9 @@ onready var _start_btn: Button
 onready var _load_btn: Button
 onready var _exit_btn: Button
 onready var _start_lbl: Label
-onready var _window_x: int
-onready var _window_y: int
+onready var _window_size: Vector2
+
+const math = preload("res://src/utils/math.gd")
 
 
 
@@ -25,14 +26,25 @@ func _initialize():
 	
 	
 	
+func _start_pressed() -> void:
+	print("Starting Game...")
+	
+	
+
+func _load_pressed() -> void:
+	print("Loading Game...")
+	
+	
+
+func _exit_pressed() -> void:
+	print("Exiting Game...")
+	
+	
+			
 func _set_menu_items() -> void:
-	_menu_items = get_node("start_menu_view/menu_items")
-	_menu_items.rect_size = Vector2(_window_x * 0.30, _window_y * 0.30)
-		
-	# position menu items container
-	# todo: move this to a common lib
-	_menu_items.rect_position.x = (_window_x * 0.30) / 2
-	_menu_items.rect_position.y = (_window_y * 0.70) / 2
+	_menu_items = get_node("start_menu_view/menu_items")	
+	_menu_items.rect_size = math.scale_node_dimension(_window_size, 0.30)			
+	_menu_items.rect_position = math.position_node_to_parent(_window_size, 0.30, 0.70)
 	
 	_start_lbl = get_node("start_menu_view/menu_items/start_lbl")
 	_start_btn = get_node("start_menu_view/menu_items/start_btn")
@@ -52,54 +64,38 @@ func _set_menu_items() -> void:
 # todo: hard coded Vector's need to be scaled
 func _set_buttons(btn: Button, type: String) -> void:
 	if (type == "start"):
-		_start_btn.text = "START GAME"		
-		_start_btn.rect_min_size = Vector2(50, 50)
-		_start_btn.connect("pressed", self, "_start_pressed")
+		btn.text = "START GAME"		
+		btn.rect_min_size = Vector2(50, 50)
+		btn.connect("pressed", self, "_start_pressed")
 	elif (type == "load"):
-		_load_btn.text = "LOAD GAME"		
-		_load_btn.rect_min_size = Vector2(50, 50)
-		_load_btn.connect("pressed", self, "_load_pressed")
+		btn.text = "LOAD GAME"		
+		btn.rect_min_size = Vector2(50, 50)
+		btn.connect("pressed", self, "_load_pressed")
 	elif(type == "exit"):
-		_exit_btn.text = "EXIT GAME"		
-		_exit_btn.rect_min_size = Vector2(50, 50)
-		_exit_btn.connect("pressed", self, "_exit_pressed")
-	
-	
-	
-func _start_pressed() -> void:
-	print("Starting Game...")
-	
-	
-
-func _load_pressed() -> void:
-	print("Loading Game...")
-	
-	
-
-func _exit_pressed() -> void:
-	print("Exiting Game...")
+		btn.text = "EXIT GAME"		
+		btn.rect_min_size = Vector2(50, 50)
+		btn.connect("pressed", self, "_exit_pressed")
 	
 	
 	
 func _set_size_from_window() -> void:
-	_window_x = get_viewport().size.x
-	_window_y = get_viewport().size.y	
+	_window_size = get_viewport().size	
 	
 		
 		
 func _set_start_menu_view() -> void:
 	_start_menu_view = get_node("start_menu_view")
-	_start_menu_view.rect_size = Vector2(_window_x, _window_y)	
-	_start_menu_view.texture = _set_image_to_scale(_window_x, _window_y)				
+	_start_menu_view.rect_size = _window_size	
+	_start_menu_view.texture = _set_image_to_scale(_window_size)				
 	
 	
 	
-func _set_image_to_scale(x: int, y: int) -> ImageTexture:
+func _set_image_to_scale(current_scale: Vector2) -> ImageTexture:
 	var menu_image: ImageTexture = ImageTexture.new()	
 	var texture = load("res://assets/images/backgrounds/start_menu.jpg")	
 	var image = texture.get_data()
 	
-	image.resize(x, y, 1)	
+	image.resize(current_scale.x, current_scale.y, 1)	
 	menu_image.create_from_image(image)
 	
 	return menu_image
