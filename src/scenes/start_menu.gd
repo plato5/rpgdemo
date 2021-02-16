@@ -9,7 +9,9 @@ onready var _exit_btn: Button
 onready var _start_lbl: Label
 onready var _window_size: Vector2
 
-const math = preload("res://src/utils/math.gd")
+const _math = preload("res://src/utils/math.gd")
+const _log = preload("res://src/utils/log.gd")
+
 
 signal _start_game()
 signal _load_game()
@@ -23,6 +25,7 @@ func _ready():
 
 
 func _initialize():
+	_log.print_to_log("initializing start_menu: ")
 	_set_size_from_window()
 	_set_start_menu_view()	
 	_set_menu_items()
@@ -46,8 +49,8 @@ func _exit_pressed() -> void:
 			
 func _set_menu_items() -> void:
 	_menu_items = get_node("start_menu_view/menu_items")	
-	_menu_items.rect_size = math.scale_node_dimension(_window_size, 0.30)			
-	_menu_items.rect_position = math.position_node_to_parent(_window_size, 0.30, 0.70)
+	_menu_items.rect_size = _math.scale_node_dimension(_window_size, 0.30)			
+	_menu_items.rect_position = _math.position_node_to_parent(_window_size, 0.30, 0.70)
 	
 	_start_lbl = get_node("start_menu_view/menu_items/start_lbl")
 	_start_btn = get_node("start_menu_view/menu_items/start_btn")
@@ -70,17 +73,17 @@ func _set_buttons(btn: Button, type: String) -> void:
 		btn.text = "START GAME"		
 		btn.rect_min_size = Vector2(50, 50)
 		if (btn.connect("pressed", self, "_start_pressed") != OK):
-			printerr("Event are not connected")
+			_handle_errors("Event are not connected")
 	elif (type == "load"):
 		btn.text = "LOAD GAME"		
 		btn.rect_min_size = Vector2(50, 50)
 		if (btn.connect("pressed", self, "_load_pressed") != OK):
-			printerr("Event are not connected")
+			_handle_errors("Event are not connected")
 	elif(type == "exit"):
 		btn.text = "EXIT GAME"		
 		btn.rect_min_size = Vector2(50, 50)
 		if (btn.connect("pressed", self, "_exit_pressed") != OK):
-			printerr("Event are not connected")
+			_handle_errors("Event are not connected")
 	
 	
 	
@@ -105,6 +108,13 @@ func _set_image_to_scale(current_scale: Vector2) -> ImageTexture:
 	menu_image.create_from_image(image)
 	
 	return menu_image
+	
+	
+# todo: may want to do more here
+func _handle_errors(message: String) -> void:
+	_log.print_to_log(message)
+	
+	
 	
 	
 	
