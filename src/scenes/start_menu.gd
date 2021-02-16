@@ -69,15 +69,18 @@ func _set_buttons(btn: Button, type: String) -> void:
 	if (type == "start"):
 		btn.text = "START GAME"		
 		btn.rect_min_size = Vector2(50, 50)
-		btn.connect("pressed", self, "_start_pressed")
+		if (btn.connect("pressed", self, "_start_pressed") != OK):
+			printerr("Event are not connected")
 	elif (type == "load"):
 		btn.text = "LOAD GAME"		
 		btn.rect_min_size = Vector2(50, 50)
-		btn.connect("pressed", self, "_load_pressed")
+		if (btn.connect("pressed", self, "_load_pressed") != OK):
+			printerr("Event are not connected")
 	elif(type == "exit"):
 		btn.text = "EXIT GAME"		
 		btn.rect_min_size = Vector2(50, 50)
-		btn.connect("pressed", self, "_exit_pressed")
+		if (btn.connect("pressed", self, "_exit_pressed") != OK):
+			printerr("Event are not connected")
 	
 	
 	
