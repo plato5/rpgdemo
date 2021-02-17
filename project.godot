@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "ImageHandler",
+"language": "GDScript",
+"path": "res://src/utils/image_handler.gd"
+}, {
+"base": "Reference",
 "class": "Log",
 "language": "GDScript",
 "path": "res://src/utils/log.gd"
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://src/utils/math.gd"
 } ]
 _global_script_class_icons={
+"ImageHandler": "",
 "Log": "",
 "Math": ""
 }

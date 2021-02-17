@@ -9,6 +9,8 @@ onready var _exit_btn: Button
 onready var _start_lbl: Label
 onready var _window_size: Vector2
 
+# static classes
+const _image_handler = preload("res://src/utils/image_handler.gd")
 const _math = preload("res://src/utils/math.gd")
 const _log = preload("res://src/utils/log.gd")
 
@@ -19,12 +21,12 @@ signal _exit_game()
 
 
 # todo: might want to pull down some of this set up to child scripts
-func _ready():
+func _ready():	
 	_initialize()
 	
 
 
-func _initialize():
+func _initialize() -> void:
 	_log.print_to_log("initializing start_menu: ")
 	_set_size_from_window()
 	_set_start_menu_view()	
@@ -44,6 +46,18 @@ func _load_pressed() -> void:
 
 func _exit_pressed() -> void:
 	emit_signal("_exit_game")
+	
+	
+
+func _set_size_from_window() -> void:
+	_window_size = get_viewport().size	
+	
+		
+		
+func _set_start_menu_view() -> void:
+	_start_menu_view = get_node("start_menu_view")
+	_start_menu_view.rect_size = _window_size	
+	_start_menu_view.texture = _image_handler.set_image_texture_to_scale(_window_size, "res://assets/images/backgrounds/start_menu.jpg")				
 	
 	
 			
@@ -86,28 +100,6 @@ func _set_buttons(btn: Button, type: String) -> void:
 			_handle_errors("Event are not connected")
 	
 	
-	
-func _set_size_from_window() -> void:
-	_window_size = get_viewport().size	
-	
-		
-		
-func _set_start_menu_view() -> void:
-	_start_menu_view = get_node("start_menu_view")
-	_start_menu_view.rect_size = _window_size	
-	_start_menu_view.texture = _set_image_to_scale(_window_size)				
-	
-	
-	
-func _set_image_to_scale(current_scale: Vector2) -> ImageTexture:
-	var menu_image: ImageTexture = ImageTexture.new()	
-	var texture = load("res://assets/images/backgrounds/start_menu.jpg")	
-	var image = texture.get_data()
-	
-	image.resize(current_scale.x, current_scale.y, 1)	
-	menu_image.create_from_image(image)
-	
-	return menu_image
 	
 	
 # todo: may want to do more here

@@ -3,6 +3,8 @@ extends Node
 onready var start_menu_scene = preload("res://scenes/start_menu.tscn")
 var start_menu 
 
+const _log = preload("res://src/utils/log.gd")
+
 
 func _ready():
 	initialize()
