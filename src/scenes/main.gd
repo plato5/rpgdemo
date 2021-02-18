@@ -9,8 +9,7 @@ const _log = preload("res://src/utils/log.gd")
 func _ready():
 	initialize()
 		
-		
-		
+				
 func initialize():
 	start_menu = start_menu_scene.instance()
 	
@@ -22,7 +21,6 @@ func initialize():
 		get_tree().quit()
 			
 
-
 func _set_up_start_menu():
 	add_child(start_menu)	
 	if (start_menu.connect("_start_game", self, "_on_start_game_pressed") != OK):
@@ -33,7 +31,6 @@ func _set_up_start_menu():
 		printerr("Event are not connected")
 	
 	
-
 func _on_start_game_pressed():	
 	var root = get_tree().get_root()
 	root.remove_child(start_menu)
@@ -41,15 +38,13 @@ func _on_start_game_pressed():
 	# todo: load new game
 	
 	
-
 func _on_load_game_pressed():
 	var root = get_tree().get_root()
 	root.remove_child(start_menu)
 	start_menu.queue_free()
 	#todo: load saved game
 	
-	
-	
+		
 func _on_exit_game_pressed():
 	get_tree().quit()
 	
