@@ -17,7 +17,7 @@ func initialize():
 	if (start_menu != null):
 		_set_up_start_menu()
 	else:
-		printerr("System failed to initialize")
+		_handle_errors("System failed to load start menu")
 		get_tree().quit()
 			
 
@@ -47,6 +47,12 @@ func _on_load_game_pressed():
 		
 func _on_exit_game_pressed():
 	get_tree().quit()
+	
+
+# todo: may want to do more here
+func _handle_errors(message: String) -> void:
+	_log.print_to_log(message)
+	
 	
 	
 	

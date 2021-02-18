@@ -20,7 +20,6 @@ signal _load_game()
 signal _exit_game()
 
 
-# todo: might want to pull down some of this set up to child scripts
 func _ready():	
 	_initialize()
 	
@@ -64,7 +63,7 @@ func _set_menu_items() -> void:
 	_load_btn = get_node("start_menu_view/menu_items/load_btn")
 	_exit_btn = get_node("start_menu_view/menu_items/exit_btn")
 	
-	# todo: might want to put the label in a seperate container
+	# todo: might want to put the label in a seperate container (VBox)
 	_start_lbl.rect_min_size = Vector2(100, 100)
 	_start_lbl.text = "RPG DEMO"
 	
