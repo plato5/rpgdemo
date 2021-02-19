@@ -15,3 +15,40 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="console_content" type="VBoxContainer" parent="console_view"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="console_header" type="Label" parent="console_view/console_content"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "TEST"
+
+[node name="console_text" type="RichTextLabel" parent="console_view/console_content"]
+margin_top = 18.0
+margin_right = 40.0
+margin_bottom = 18.0
+text = "This is some random text!"
+
+[node name="console_actions" type="HBoxContainer" parent="console_view"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="console_move_btn" type="Button" parent="console_view/console_actions"]
+margin_right = 12.0
+margin_bottom = 40.0
+
+[node name="console_quit_btn" type="Button" parent="console_view/console_actions"]
+margin_left = 16.0
+margin_right = 28.0
+margin_bottom = 40.0
