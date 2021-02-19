@@ -1,6 +1,6 @@
 extends Node
 
-onready var _main_view: TextureRect
+onready var _console_view: TextureRect
 onready var _window_size: Vector2
 
 # static classes
@@ -8,24 +8,22 @@ const _log = preload("res://src/utils/log.gd")
 
 
 func _ready():
-	_log.print_to_log("starting up main view...")
+	_log.print_to_log("starting up console view...")
 	_initialize()
 	
 		
 func _initialize() -> void:	
 	pass
 	_set_size_from_window()
-	_set_main_view()	
+	_set_console_view()	
 	
 	
 func _set_size_from_window() -> void:
 	_window_size = get_viewport().size	
 	
 	
-func _set_main_view() -> void:
-	_main_view = get_node("main_view")	
+func _set_console_view() -> void:
+	_console_view = get_node("console_view")
 	
 	
 	
-	
-		
