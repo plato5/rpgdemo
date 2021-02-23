@@ -18,10 +18,7 @@ func _initialize() -> void:
 	pass
 	_set_size_from_window()
 	_set_console_view()	
-	
-	
-#func _exit_game():
-#	emit_signal("_exit_game")
+		
 	
 func _set_size_from_window() -> void:
 	_window_size = get_viewport().size	

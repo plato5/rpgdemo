@@ -18,7 +18,6 @@ func _ready():
 func initialize():
 	_start_menu = _start_menu_scene.instance()
 	
-	# todo: need to add some logging
 	if (_start_menu != null):
 		_set_up_start_menu()
 	else:
@@ -26,31 +25,29 @@ func initialize():
 		get_tree().quit()
 			
 
-func _set_up_start_menu():
+func _set_up_start_menu():	
 	add_child(_start_menu)	
 	if (_start_menu.connect("_start_game", self, "_on_start_game_pressed") != OK):
 		_handle_errors("Event are not connected")
-	if (_start_menu.connect("_load_game", self, "_on_load_game_pressed") != OK):
-		_handle_errors("Event are not connected")
-	if (_start_menu.connect("_exit_game", self, "_on_exit_game_pressed") != OK):
-		_handle_errors("Event are not connected")
 	
-	
-func _on_start_game_pressed():	
+	_start_menu.start_exit_func_property = funcref(self, "handle_exit")
+	_start_menu.start_load_func_property = funcref(self, "handle_load")
+	_start_menu.start_game_func_property = funcref(self, "handle_start")
+
+		
+func handle_start():		
 	_close_scene(_start_menu)
 	# todo: start new game
 	_main_controller = _main_controller_scene.instance()
 	add_child(_main_controller)
-	if (_main_controller.connect("_exit_game", self, "_on_exit_game_pressed")):
-		_handle_errors("Event are not connected")
 	
-	
-func _on_load_game_pressed():
+		
+func handle_load():
 	_close_scene(_start_menu)
 	# todo: load existing game
 	
 		
-func _on_exit_game_pressed():
+func handle_exit():
 	if (_start_menu != null):
 		_close_scene(_start_menu)
 	if (_main_controller != null):
@@ -62,7 +59,6 @@ func _close_scene(scene: Node) -> void:
 	scene.queue_free()
 	
 
-# todo: may want to do more here
 func _handle_errors(message: String) -> void:
 	_log.print_to_log(message)
 	

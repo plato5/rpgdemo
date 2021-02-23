@@ -1,4 +1,4 @@
-class_name ConsoleView extends TextureRect
+extends TextureRect
 
 onready var _console_image: ImageTexture
 onready var _window_size: Vector2

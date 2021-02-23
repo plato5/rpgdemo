@@ -1,4 +1,4 @@
-class_name MainView extends TextureRect
+extends TextureRect
 
 onready var _map_image: ImageTexture
 onready var _window_size: Vector2
