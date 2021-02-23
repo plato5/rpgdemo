@@ -41,6 +41,8 @@ func _on_start_game_pressed():
 	# todo: start new game
 	_main_controller = _main_controller_scene.instance()
 	add_child(_main_controller)
+	if (_main_controller.connect("_exit_game", self, "_on_exit_game_pressed")):
+		_handle_errors("Event are not connected")
 	
 	
 func _on_load_game_pressed():
@@ -49,7 +51,10 @@ func _on_load_game_pressed():
 	
 		
 func _on_exit_game_pressed():
-	_close_scene(_start_menu)
+	if (_start_menu != null):
+		_close_scene(_start_menu)
+	if (_main_controller != null):
+		_close_scene(_main_controller)
 	get_tree().quit()
 	
 	
