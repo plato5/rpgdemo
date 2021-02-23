@@ -20,11 +20,9 @@ signal _load_game()
 signal _exit_game()
 
 
-# todo: might want to pull down some of this set up to child scripts
 func _ready():	
 	_initialize()
 	
-
 
 func _initialize() -> void:
 	_log.print_to_log("initializing start_menu: ")
@@ -32,35 +30,29 @@ func _initialize() -> void:
 	_set_start_menu_view()	
 	_set_menu_items()
 	
-	
-	
+		
 func _start_pressed() -> void:
 	emit_signal("_start_game")
 	
 	
-
 func _load_pressed() -> void:
 	emit_signal("_load_game")
 	
 	
-
 func _exit_pressed() -> void:
 	emit_signal("_exit_game")
 	
 	
-
 func _set_size_from_window() -> void:
 	_window_size = get_viewport().size	
 	
-		
-		
+				
 func _set_start_menu_view() -> void:
 	_start_menu_view = get_node("start_menu_view")
 	_start_menu_view.rect_size = _window_size	
 	_start_menu_view.texture = _image_handler.set_image_texture_to_scale(_window_size, "res://assets/images/backgrounds/start_menu.jpg")				
 	
-	
-			
+				
 func _set_menu_items() -> void:
 	_menu_items = get_node("start_menu_view/menu_items")	
 	_menu_items.rect_size = _math.scale_node_dimension(_window_size, 0.30)			
@@ -71,7 +63,7 @@ func _set_menu_items() -> void:
 	_load_btn = get_node("start_menu_view/menu_items/load_btn")
 	_exit_btn = get_node("start_menu_view/menu_items/exit_btn")
 	
-	# todo: might want to put the label in a seperate container
+	# todo: might want to put the label in a seperate container (VBox)
 	_start_lbl.rect_min_size = Vector2(100, 100)
 	_start_lbl.text = "RPG DEMO"
 	
@@ -79,8 +71,7 @@ func _set_menu_items() -> void:
 	_set_buttons(_load_btn, "load")
 	_set_buttons(_exit_btn, "exit")	
 	
-	
-	
+		
 # todo: hard coded Vector's need to be scaled
 func _set_buttons(btn: Button, type: String) -> void:
 	if (type == "start"):
@@ -99,9 +90,7 @@ func _set_buttons(btn: Button, type: String) -> void:
 		if (btn.connect("pressed", self, "_exit_pressed") != OK):
 			_handle_errors("Event are not connected")
 	
-	
-	
-	
+		
 # todo: may want to do more here
 func _handle_errors(message: String) -> void:
 	_log.print_to_log(message)
