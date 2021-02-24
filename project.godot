@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "TextureRect",
-"class": "ConsoleView",
-"language": "GDScript",
-"path": "res://src/views/console_view.gd"
-}, {
 "base": "Reference",
 "class": "ImageHandler",
 "language": "GDScript",
@@ -24,21 +19,14 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/utils/log.gd"
 }, {
-"base": "TextureRect",
-"class": "MainView",
-"language": "GDScript",
-"path": "res://src/views/main_view.gd"
-}, {
 "base": "Reference",
 "class": "Math",
 "language": "GDScript",
 "path": "res://src/utils/math.gd"
 } ]
 _global_script_class_icons={
-"ConsoleView": "",
 "ImageHandler": "",
 "Log": "",
-"MainView": "",
 "Math": ""
 }
 
