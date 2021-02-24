@@ -1,8 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/scenes/console.gd" type="Script" id=1]
 [ext_resource path="res://src/views/console_view.gd" type="Script" id=2]
+[ext_resource path="res://src/controls/console_header_text.gd" type="Script" id=3]
 [ext_resource path="res://assets/custom_fonts/OpenSans-ExtraBold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://src/controls/console_header.gd" type="Script" id=5]
+[ext_resource path="res://src/controls/console_text.gd" type="Script" id=6]
+[ext_resource path="res://src/controls/console_content.gd" type="Script" id=7]
+[ext_resource path="res://src/controls/console_actions.gd" type="Script" id=8]
+[ext_resource path="res://src/controls/console_quit_btn.gd" type="Script" id=9]
+[ext_resource path="res://src/controls/console_move_btn.gd" type="Script" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -32,6 +39,7 @@ __meta__ = {
 margin_top = 50.0
 margin_right = 40.0
 margin_bottom = 50.0
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -40,10 +48,12 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 42.0
 custom_fonts/font = SubResource( 1 )
+script = ExtResource( 3 )
 
 [node name="console_content" type="VBoxContainer" parent="console_view"]
 margin_right = 40.0
 margin_bottom = 40.0
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -51,10 +61,12 @@ __meta__ = {
 [node name="console_text" type="RichTextLabel" parent="console_view/console_content"]
 margin_right = 40.0
 custom_fonts/normal_font = SubResource( 2 )
+script = ExtResource( 6 )
 
 [node name="console_actions" type="HBoxContainer" parent="console_view"]
 margin_right = 40.0
 margin_bottom = 40.0
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -62,8 +74,10 @@ __meta__ = {
 [node name="console_quit_btn" type="Button" parent="console_view/console_actions"]
 margin_right = 12.0
 margin_bottom = 40.0
+script = ExtResource( 9 )
 
 [node name="console_move_btn" type="Button" parent="console_view/console_actions"]
 margin_left = 16.0
 margin_right = 28.0
 margin_bottom = 40.0
+script = ExtResource( 10 )

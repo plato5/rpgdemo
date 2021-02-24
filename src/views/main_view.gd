@@ -2,11 +2,11 @@ extends TextureRect
 
 onready var _map_image: ImageTexture
 onready var _window_size: Vector2
+onready var main_quit_game_func_property: FuncRef
 
 onready var _console_scene = preload("res://scenes/console.tscn")
 var _console
 
-signal _exit_game()
 
 # static classes
 const _image_handler = preload("res://src/utils/image_handler.gd")
@@ -22,20 +22,17 @@ func _initialize() -> void:
 	texture = _map_image	
 	
 	_console = _console_scene.instance()
-	
-	if (_console.connect("_exit_game", self, "_quit_game_pressed") != OK):
-		_handle_errors("Event are not connected")
-	
+	_console.console_quit_game_func_property = funcref(self, "handle_quit")		
 	add_child(_console)	
-	
-	
 
-func _quit_game_pressed() -> void:
-	_handle_errors("main_view: clicked")
-	emit_signal("_exit_game")
+		
+func handle_quit() -> void:
+	if (main_quit_game_func_property != null):
+		main_quit_game_func_property.call_func()
+	else:
+		_handle_errors("console funref is null")
 	
-	
-
+					
 func _set_size_from_window() -> void:
 	_window_size = get_viewport().size	
 	

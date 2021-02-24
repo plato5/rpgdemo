@@ -2,8 +2,8 @@ extends Node
 
 onready var _main_view: TextureRect
 onready var _window_size: Vector2
+onready var quit_game_func_property: FuncRef
 
-signal _exit_game()
 
 # static classes
 const _log = preload("res://src/utils/log.gd")
@@ -15,27 +15,17 @@ func _ready():
 	
 		
 func _initialize() -> void:	
-	pass
-	_set_size_from_window()
-	_set_main_view()	
-	
-	
-func _set_size_from_window() -> void:
-	_window_size = get_viewport().size	
-	
-	
-func _set_main_view() -> void:
-	_main_view = get_node("main_view")	
-	
-	if (_main_view.connect("_exit_game", self, "_quit_game_pressed") != OK):
-		_handle_errors("Event are not connected")
-		
-		
+	_main_view = get_node("main_view")
+	_main_view.main_quit_game_func_property = funcref(self, "handle_quit")
 
-func _quit_game_pressed() -> void:
-	_handle_errors("main_view: clicked")
-	emit_signal("_exit_game")
+
+func handle_quit() -> void:
+	if (quit_game_func_property != null):
+		quit_game_func_property.call_func()
+	else:
+		_handle_errors("main funref is null")
 	
+			
 	
 
 func _handle_errors(message: String) -> void:

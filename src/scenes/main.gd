@@ -26,10 +26,7 @@ func initialize():
 			
 
 func _set_up_start_menu():	
-	add_child(_start_menu)	
-	if (_start_menu.connect("_start_game", self, "_on_start_game_pressed") != OK):
-		_handle_errors("Event are not connected")
-	
+	add_child(_start_menu)		
 	_start_menu.start_exit_func_property = funcref(self, "handle_exit")
 	_start_menu.start_load_func_property = funcref(self, "handle_load")
 	_start_menu.start_game_func_property = funcref(self, "handle_start")
@@ -37,8 +34,8 @@ func _set_up_start_menu():
 		
 func handle_start():		
 	_close_scene(_start_menu)
-	# todo: start new game
 	_main_controller = _main_controller_scene.instance()
+	_main_controller.quit_game_func_property = funcref(self, "handle_exit")
 	add_child(_main_controller)
 	
 		
