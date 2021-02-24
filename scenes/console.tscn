@@ -4,10 +4,10 @@
 [ext_resource path="res://src/views/console_view.gd" type="Script" id=2]
 [ext_resource path="res://src/controls/console_header_text.gd" type="Script" id=3]
 [ext_resource path="res://assets/custom_fonts/OpenSans-ExtraBold.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://src/controls/console_header.gd" type="Script" id=5]
+[ext_resource path="res://src/containers/console_header.gd" type="Script" id=5]
 [ext_resource path="res://src/controls/console_text.gd" type="Script" id=6]
-[ext_resource path="res://src/controls/console_content.gd" type="Script" id=7]
-[ext_resource path="res://src/controls/console_actions.gd" type="Script" id=8]
+[ext_resource path="res://src/containers/console_content.gd" type="Script" id=7]
+[ext_resource path="res://src/containers/console_actions.gd" type="Script" id=8]
 [ext_resource path="res://src/controls/console_quit_btn.gd" type="Script" id=9]
 [ext_resource path="res://src/controls/console_move_btn.gd" type="Script" id=10]
 

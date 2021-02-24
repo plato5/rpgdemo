@@ -30,9 +30,9 @@ func _set_size_from_window() -> void:
 	
 						
 func _set_btn_handlers() -> void:	
-	_start_btn = get_node("start_menu_view/menu_items/start_btn")
-	_load_btn = get_node("start_menu_view/menu_items/load_btn")
-	_exit_btn = get_node("start_menu_view/menu_items/exit_btn")
+	_start_btn = get_node("start_menu_view/start_menu_items/start_menu_start_btn")
+	_load_btn = get_node("start_menu_view/start_menu_items/start_menu_load_btn")
+	_exit_btn = get_node("start_menu_view/start_menu_items/start_menu_exit_btn")
 		
 	_exit_btn.exit_btn_func_property = funcref(self, "handle_exit")	
 	_load_btn.load_btn_func_property = funcref(self, "handle_load")
